@@ -14,6 +14,10 @@ File was unzipped into project directory prior to processing in R, and saved as 
 
 #### Load Libraries and Read Data with read.csv
 
+```r
+library(dplyr)
+```
+
 ```
 ## 
 ## Attaching package: 'dplyr'
@@ -31,6 +35,13 @@ File was unzipped into project directory prior to processing in R, and saved as 
 ##     intersect, setdiff, setequal, union
 ```
 
+```r
+library(ggplot2)
+library(scales)
+library(xtable)
+library(sqldf)
+```
+
 ```
 ## Loading required package: gsubfn
 ```
@@ -41,6 +52,11 @@ File was unzipped into project directory prior to processing in R, and saved as 
 
 ```
 ## Loading required package: RSQLite
+```
+
+```r
+library(knitr)
+activity <- read.csv("activity.csv")
 ```
 #### Pre-process data
 

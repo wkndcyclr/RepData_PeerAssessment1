@@ -20,12 +20,13 @@ File was unzipped into project directory prior to processing in R, and saved as 
 ### Step 1 Load Libraries, Read and Process Data
 
 #### Load Libraries and Read Data with read.csv
-```{r read activity.csv, echo=FALSE}
+```{r read activity.csv}
 library(dplyr)
 library(ggplot2)
 library(scales)
 library(xtable)
 library(sqldf)
+library(knitr)
 activity <- read.csv("activity.csv")
 ```
 #### Pre-process data

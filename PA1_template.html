@@ -129,6 +129,7 @@ $(document).ready(function () {
 <h3>Step 1 Load Libraries, Read and Process Data</h3>
 <div id="load-libraries-and-read-data-with-read.csv" class="section level4">
 <h4>Load Libraries and Read Data with read.csv</h4>
+<pre class="r"><code>library(dplyr)</code></pre>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:stats':
@@ -137,9 +138,15 @@ $(document).ready(function () {
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(scales)
+library(xtable)
+library(sqldf)</code></pre>
 <pre><code>## Loading required package: gsubfn</code></pre>
 <pre><code>## Loading required package: proto</code></pre>
 <pre><code>## Loading required package: RSQLite</code></pre>
+<pre class="r"><code>library(knitr)
+activity &lt;- read.csv(&quot;activity.csv&quot;)</code></pre>
 </div>
 <div id="pre-process-data" class="section level4">
 <h4>Pre-process data</h4>
