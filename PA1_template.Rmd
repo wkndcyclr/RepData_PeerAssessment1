@@ -1,25 +1,205 @@
 ---
-title: "Reproducible Research: Peer Assessment 1"
+title: "PA1_template"
 output: 
-  html_document:
-    keep_md: true
+  html_document: 
+    keep_md: yes
 ---
 
 
-## Loading and preprocessing the data
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
+### Introduction
 
+This is an analysis of data from a personal activity monitoring device. This device collects data at 5 minute intervals through out the day. The data consists of two months of data from an anonymous individual collected during the months of October and November, 2012 and include the number of steps taken in 5 minute intervals each day.
 
-## What is mean total number of steps taken per day?
+Data was downloaded from Coursera Site https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip on 6/1/2017
+File was unzipped into project directory prior to processing in R, and saved as activity.csv
 
+### Step 1 Load Libraries, Read and Process Data
 
+#### Load Libraries and Read Data with read.csv
+```{r read activity.csv, echo=FALSE}
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(xtable)
+library(sqldf)
+activity <- read.csv("activity.csv")
+```
+#### Pre-process data
 
-## What is the average daily activity pattern?
+- Examine data with str
+- Change "date"" field to data type of "date"
 
+```{r examine_and_process}
+str(activity)
+activity$date <- as.Date(activity$date, "%Y-%m-%d")
+str(activity)
+```
+  
+### Step 2 - Histogram of the total number of steps taken each day
+  
+####   Total by Date and examine new data frame  
 
+```{r group_by_date}
+bydate <- group_by(activity, date) %>% summarize(total = sum(steps))
+str(bydate)
+```
+  
+#### Create Histogram  
+```{r Histogram}
+qplot(total, data=bydate, binwidth = 1000) +
+      labs(x = "Total Steps per Day", y = "Number of days") +
+      scale_y_continuous(breaks=seq(1:10)) +
+      scale_x_continuous(breaks = pretty_breaks(10))
+```
+  
+### Step 3 - Calculate the mean and median number of steps taken per day
+  
+#### Use group by and summarize to create new data frame with mean and median steps per day
+```{r calculate_mean_and_median}
+meanmed <- activity %>% group_by(date) %>% summarize(mean.steps = mean(steps ), median.steps = median(steps, na.rm = TRUE)) 
+```
+  
+#### Display mean and median  
+```{r show_mean_and_median_table}
+knitr::kable(meanmed, caption = "Mean and Median Number of Steps per Day", result="asis")
+```
+  
+Why are all median values 0?  Let's see how many observations are in each date and how many are 0?
+```{r calculate_count_and_0}
+count <- sqldf('select date as date__Date, count(*) from activity where steps = 0 group by date', method = "name__class")
+count0 <- sqldf('select date as date__Date, count(*) from activity group by date', method = "name__class")
+ctable <- full_join(count0, count, by = "date")
+names(ctable) <- c("date","total observations", "steps = 0 ")
+```
+  
+Aha! Every date has more half its values as 0!
+```{r show table_total_and_0_values, result="asis"}
+knitr::kable(ctable, caption = "Total and 0 Values for each date", result="asis")
+```
 
-## Imputing missing values
+### Step 4 - Time series plot of the average number of steps taken
 
+#### Group data by interval and calculate the average number of steps for all days by interval
 
+```{r calculate_average}
+byinterval <- group_by(activity, interval) %>%
+      summarise(average = mean(steps, na.rm = TRUE))
+```
 
-## Are there differences in activity patterns between weekdays and weekends?
+#### Create time series plot with x axis as 5 minute intervals and y axis average number of steps taken across all days
+
+```{r plot_average_steps_by_interval}
+ggplot(data = byinterval) + 
+      geom_line(aes(x = byinterval$interval, y = byinterval$average)) +
+      labs(title = "Average steps by 5 minute interval") + 
+      labs(x = "Interval", y = "Average Steps") 
+```
+
+### Step 5 The 5-minute interval that, on average, contains the maximum number of steps
+####Sort dataframe by steps descending to determine which 5 minute interval contains the maximum number of steps
+Print the values of the 1st row of the sorted dataframe to show the interval and maximum number of steps
+
+```{r maximum_steps}
+byinterval <- arrange(byinterval, desc(average))
+```
+
+The interval with the maximum number steps is: `r byinterval[1,1]` with `r byinterval[1,2]` steps  
+
+### Step 6 Code to describe and show a strategy for imputing missing data
+
+#### Calcuate and Display the number of row with missing values (e.g, NAs)
+```{r count_NAs}
+NAcount <- sum(is.na(activity$steps))
+```
+The number of rows with missing values is: `r NAcount`  
+
+#### To fill in the missing values, use the mean values for each interval already calculated in the "byinterval" data frame
+
+1. Use filter to create 2 dataframes 1 with rows containing NA, 1 with rows containing values
+2. After filtering the NA frame, remove the steps column, as it will be replace
+3. Join byinterval, to bring the average # of steps by interval into the dataframe for the NA rows
+4. Reorder the columns and change the column name back to steps.  (The column was named 'average' in 'byinterval')
+5. Combine the dataframe with the replace values for NAs back with the 2nd dataframe that had values for steps
+
+```{r NA_fill}
+activityNA <- filter(activity, is.na(steps)) %>% select(-steps) 
+activitynotNA <- filter(activity, !is.na(steps))
+activityNA  <- left_join(activityNA, byinterval, by = "interval")
+activityNA <-activityNA[c(3,1,2)]
+colnames(activityNA)[1] <- "steps"
+activityNAfill <- bind_rows(activityNA, activitynotNA)
+```
+#### As a simple check, show are the number of NAs
+```{r count_NAs-2}
+NAcount <- sum(is.na(activityNAfill$steps))
+```
+The number of rows with missing values is: `r NAcount`  
+####,Compare the two data frames
+```{r compare}
+summary(activity)
+summary(activityNAfill)
+```
+- Note that the summary values for date and interval are the same
+
+### Step 7a Histogram of the total number of steps taken each day after missing values are imputed
+Note - This section re-uses code from earlier sections, using a new dataframe bydateNAfill instead of bydate and meanmedNAfill instead of meanmed.  This requires modifying name of code chunks
+
+#### Total by Date and examine new data frame  
+
+```{r group_by_date_NA_fill}
+bydateNAfill <- group_by(activityNAfill, date) %>% summarize(total = sum(steps))
+str(bydate)
+```
+  
+#### Create Histogram  
+```{r histogram_NA_fill}
+qplot(total, data=bydateNAfill, binwidth = 1000) +
+      labs(x = "Total Steps per Day - NAs filled", y = "Number of days") +
+      scale_y_continuous(breaks=seq(1:10)) +
+      scale_x_continuous(breaks = pretty_breaks(10))
+```
+  
+### Step 7b - Calculate the mean and median number of steps taken per day
+  
+#### Use group by and summarize to create new data frame with mean and median steps per day
+
+```{r calculate_mean_median_NA_fill}
+meanmedNAfill <- activityNAfill %>% group_by(date) %>% summarize(mean.steps = mean(steps ), median.steps = median(steps)) 
+```
+  
+####Display mean and median  
+```{r show_mean_median_NA_table, result="asis"}
+knitr::kable(meanmedNAfill, caption = "Mean and Median Number of Steps per Day - NA's filled")
+```
+
+Impact of filling NAs increases total, mean and median in days containing NAs  
+This can  be seen more clearly by comparing summaries of meanmed and meanmedNAfill
+
+```{r compare summaries}
+knitr::kable(summary(meanmed), caption = "Summary of Means and Medians without NA's filled")
+knitr::kable(summary(meanmedNAfill), caption = "Summary of Means and Medians with NA's filled")
+```
+
+### Step 8 Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
+#### Create Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day. 
+
+- Use the weekend function  
+- Summarize and create average 
+
+```{r add factor for weekday, weekend}
+actwday <- mutate(activityNAfill, daytype = as.factor(ifelse(weekdays(date, abbr = TRUE) %in% c("Sat", "Sun"), "weekend", "weekday")))
+bydatew <- group_by(actwday, interval, daytype) %>% summarize(average = mean(steps)) %>% arrange(daytype)
+```
+
+#### Use ggplot with factor_grid to create Panel Plot
+```{r Panel Plot}
+ggplot(data = bydatew) + 
+      geom_line(aes(x = interval, y = average)) +
+      labs(title = "Average steps by 5 minute interval") + 
+      labs(x = "Interval", y = "Average Steps") +
+      facet_wrap(~daytype, nrow = 2)
+```
