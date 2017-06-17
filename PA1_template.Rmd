@@ -65,8 +65,8 @@ meanmed <- activity %>% group_by(date) %>% summarize(mean.steps = mean(steps ), 
 ```
   
 #### Display mean and median  
-```{r show_mean_and_median_table}
-knitr::kable(meanmed, caption = "Mean and Median Number of Steps per Day", result="asis")
+```{r show_mean_and_median_table, results="asis"}
+knitr::kable(meanmed, caption = "Mean and Median Number of Steps per Day")
 ```
   
 Why are all median values 0?  Let's see how many observations are in each date and how many are 0?
@@ -78,8 +78,8 @@ names(ctable) <- c("date","total observations", "steps = 0 ")
 ```
   
 Aha! Every date has more half its values as 0!
-```{r show table_total_and_0_values, result="asis"}
-knitr::kable(ctable, caption = "Total and 0 Values for each date", result="asis")
+```{r show table_total_and_0_values, results="asis"}
+knitr::kable(ctable, caption = "Total and 0 Values for each date")
 ```
 
 ### Step 4 - Time series plot of the average number of steps taken
@@ -122,7 +122,7 @@ The number of rows with missing values is: `r NAcount`
 
 1. Use filter to create 2 dataframes 1 with rows containing NA, 1 with rows containing values
 2. After filtering the NA frame, remove the steps column, as it will be replace
-3. Join byinterval, to bring the average # of steps by interval into the dataframe for the NA rows
+3. Join **byinterval**, to bring the average # of steps by interval into the dataframe for the NA rows
 4. Reorder the columns and change the column name back to steps.  (The column was named 'average' in 'byinterval')
 5. Combine the dataframe with the replace values for NAs back with the 2nd dataframe that had values for steps
 
@@ -138,13 +138,13 @@ activityNAfill <- bind_rows(activityNA, activitynotNA)
 ```{r count_NAs-2}
 NAcount <- sum(is.na(activityNAfill$steps))
 ```
-The number of rows with missing values is: `r NAcount`  
-####,Compare the two data frames
+The number of rows with missing values is: `r NAcount`
+#### Compare the two data frames
 ```{r compare}
 summary(activity)
 summary(activityNAfill)
 ```
-- Note that the summary values for date and interval are the same
+- Note that the summary values for date and interval are the same, while the 3rd quartile for steps increase with NAs filled
 
 ### Step 7a Histogram of the total number of steps taken each day after missing values are imputed
 Note - This section re-uses code from earlier sections, using a new dataframe bydateNAfill instead of bydate and meanmedNAfill instead of meanmed.  This requires modifying name of code chunks
@@ -173,14 +173,14 @@ meanmedNAfill <- activityNAfill %>% group_by(date) %>% summarize(mean.steps = me
 ```
   
 ####Display mean and median  
-```{r show_mean_median_NA_table, result="asis"}
+```{r show_mean_median_NA_table, results="asis"}
 knitr::kable(meanmedNAfill, caption = "Mean and Median Number of Steps per Day - NA's filled")
 ```
 
 Impact of filling NAs increases total, mean and median in days containing NAs  
 This can  be seen more clearly by comparing summaries of meanmed and meanmedNAfill
 
-```{r compare summaries}
+```{r compare summaries, results="asis"}
 knitr::kable(summary(meanmed), caption = "Summary of Means and Medians without NA's filled")
 knitr::kable(summary(meanmedNAfill), caption = "Summary of Means and Medians with NA's filled")
 ```

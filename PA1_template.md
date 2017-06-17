@@ -129,7 +129,7 @@ meanmed <- activity %>% group_by(date) %>% summarize(mean.steps = mean(steps ), 
 #### Display mean and median  
 
 ```r
-knitr::kable(meanmed, caption = "Mean and Median Number of Steps per Day", result="asis")
+knitr::kable(meanmed, caption = "Mean and Median Number of Steps per Day")
 ```
 
 
@@ -224,7 +224,7 @@ names(ctable) <- c("date","total observations", "steps = 0 ")
 Aha! Every date has more half its values as 0!
 
 ```r
-knitr::kable(ctable, caption = "Total and 0 Values for each date", result="asis")
+knitr::kable(ctable, caption = "Total and 0 Values for each date")
 ```
 
 
@@ -341,7 +341,7 @@ The number of rows with missing values is: 2304
 
 1. Use filter to create 2 dataframes 1 with rows containing NA, 1 with rows containing values
 2. After filtering the NA frame, remove the steps column, as it will be replace
-3. Join byinterval, to bring the average # of steps by interval into the dataframe for the NA rows
+3. Join **byinterval**, to bring the average # of steps by interval into the dataframe for the NA rows
 4. Reorder the columns and change the column name back to steps.  (The column was named 'average' in 'byinterval')
 5. Combine the dataframe with the replace values for NAs back with the 2nd dataframe that had values for steps
 
@@ -359,8 +359,8 @@ activityNAfill <- bind_rows(activityNA, activitynotNA)
 ```r
 NAcount <- sum(is.na(activityNAfill$steps))
 ```
-The number of rows with missing values is: 0  
-####,Compare the two data frames
+The number of rows with missing values is: 0
+#### Compare the two data frames
 
 ```r
 summary(activity)
@@ -390,7 +390,7 @@ summary(activityNAfill)
 ##  3rd Qu.: 27.00   3rd Qu.:2012-11-15   3rd Qu.:1766.2  
 ##  Max.   :806.00   Max.   :2012-11-30   Max.   :2355.0
 ```
-- Note that the summary values for date and interval are the same
+- Note that the summary values for date and interval are the same, while the 3rd quartile for steps increase with NAs filled
 
 ### Step 7a Histogram of the total number of steps taken each day after missing values are imputed
 Note - This section re-uses code from earlier sections, using a new dataframe bydateNAfill instead of bydate and meanmedNAfill instead of meanmed.  This requires modifying name of code chunks

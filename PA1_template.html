@@ -195,7 +195,7 @@ str(bydate)</code></pre>
 </div>
 <div id="display-mean-and-median" class="section level4">
 <h4>Display mean and median</h4>
-<pre class="r"><code>knitr::kable(meanmed, caption = &quot;Mean and Median Number of Steps per Day&quot;, result=&quot;asis&quot;)</code></pre>
+<pre class="r"><code>knitr::kable(meanmed, caption = &quot;Mean and Median Number of Steps per Day&quot;)</code></pre>
 <table>
 <caption>Mean and Median Number of Steps per Day</caption>
 <thead>
@@ -522,7 +522,7 @@ str(bydate)</code></pre>
 ctable &lt;- full_join(count0, count, by = &quot;date&quot;)
 names(ctable) &lt;- c(&quot;date&quot;,&quot;total observations&quot;, &quot;steps = 0 &quot;)</code></pre>
 <p>Aha! Every date has more half its values as 0!</p>
-<pre class="r"><code>knitr::kable(ctable, caption = &quot;Total and 0 Values for each date&quot;, result=&quot;asis&quot;)</code></pre>
+<pre class="r"><code>knitr::kable(ctable, caption = &quot;Total and 0 Values for each date&quot;)</code></pre>
 <table>
 <caption>Total and 0 Values for each date</caption>
 <thead>
@@ -879,7 +879,7 @@ names(ctable) &lt;- c(&quot;date&quot;,&quot;total observations&quot;, &quot;ste
 <ol style="list-style-type: decimal">
 <li>Use filter to create 2 dataframes 1 with rows containing NA, 1 with rows containing values</li>
 <li>After filtering the NA frame, remove the steps column, as it will be replace</li>
-<li>Join byinterval, to bring the average # of steps by interval into the dataframe for the NA rows</li>
+<li>Join <strong>byinterval</strong>, to bring the average # of steps by interval into the dataframe for the NA rows</li>
 <li>Reorder the columns and change the column name back to steps. (The column was named ‘average’ in ‘byinterval’)</li>
 <li>Combine the dataframe with the replace values for NAs back with the 2nd dataframe that had values for steps</li>
 </ol>
@@ -893,8 +893,7 @@ activityNAfill &lt;- bind_rows(activityNA, activitynotNA)</code></pre>
 <div id="as-a-simple-check-show-are-the-number-of-nas" class="section level4">
 <h4>As a simple check, show are the number of NAs</h4>
 <pre class="r"><code>NAcount &lt;- sum(is.na(activityNAfill$steps))</code></pre>
-<p>The number of rows with missing values is: 0<br />
-####,Compare the two data frames</p>
+<p>The number of rows with missing values is: 0 #### Compare the two data frames</p>
 <pre class="r"><code>summary(activity)</code></pre>
 <pre><code>##      steps             date               interval     
 ##  Min.   :  0.00   Min.   :2012-10-01   Min.   :   0.0  
@@ -913,7 +912,7 @@ activityNAfill &lt;- bind_rows(activityNA, activitynotNA)</code></pre>
 ##  3rd Qu.: 27.00   3rd Qu.:2012-11-15   3rd Qu.:1766.2  
 ##  Max.   :806.00   Max.   :2012-11-30   Max.   :2355.0</code></pre>
 <ul>
-<li>Note that the summary values for date and interval are the same</li>
+<li>Note that the summary values for date and interval are the same, while the 3rd quartile for steps increase with NAs filled</li>
 </ul>
 </div>
 </div>
