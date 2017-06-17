@@ -197,7 +197,6 @@ str(bydate)</code></pre>
 <h4>Display mean and median</h4>
 <pre class="r"><code>knitr::kable(meanmed, caption = &quot;Mean and Median Number of Steps per Day&quot;)</code></pre>
 <table>
-<caption>Mean and Median Number of Steps per Day</caption>
 <thead>
 <tr class="header">
 <th align="left">date</th>
@@ -524,319 +523,318 @@ names(ctable) &lt;- c(&quot;date&quot;,&quot;total observations&quot;, &quot;ste
 <p>Aha! Every date has more half its values as 0!</p>
 <pre class="r"><code>knitr::kable(ctable, caption = &quot;Total and 0 Values for each date&quot;)</code></pre>
 <table>
-<caption>Total and 0 Values for each date</caption>
 <thead>
 <tr class="header">
 <th align="left">date</th>
 <th align="right">total observations</th>
-<th align="center">steps = 0</th>
+<th align="right">steps = 0</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">2012-10-01</td>
 <td align="right">288</td>
-<td align="center">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-02</td>
 <td align="right">288</td>
-<td align="center">286</td>
+<td align="right">286</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-03</td>
 <td align="right">288</td>
-<td align="center">207</td>
+<td align="right">207</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-04</td>
 <td align="right">288</td>
-<td align="center">188</td>
+<td align="right">188</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-05</td>
 <td align="right">288</td>
-<td align="center">202</td>
+<td align="right">202</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-06</td>
 <td align="right">288</td>
-<td align="center">182</td>
+<td align="right">182</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-07</td>
 <td align="right">288</td>
-<td align="center">180</td>
+<td align="right">180</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-08</td>
 <td align="right">288</td>
-<td align="center">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-09</td>
 <td align="right">288</td>
-<td align="center">193</td>
+<td align="right">193</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-10</td>
 <td align="right">288</td>
-<td align="center">184</td>
+<td align="right">184</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-11</td>
 <td align="right">288</td>
-<td align="center">213</td>
+<td align="right">213</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-12</td>
 <td align="right">288</td>
-<td align="center">177</td>
+<td align="right">177</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-13</td>
 <td align="right">288</td>
-<td align="center">184</td>
+<td align="right">184</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-14</td>
 <td align="right">288</td>
-<td align="center">194</td>
+<td align="right">194</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-15</td>
 <td align="right">288</td>
-<td align="center">211</td>
+<td align="right">211</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-16</td>
 <td align="right">288</td>
-<td align="center">192</td>
+<td align="right">192</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-17</td>
 <td align="right">288</td>
-<td align="center">200</td>
+<td align="right">200</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-18</td>
 <td align="right">288</td>
-<td align="center">222</td>
+<td align="right">222</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-19</td>
 <td align="right">288</td>
-<td align="center">195</td>
+<td align="right">195</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-20</td>
 <td align="right">288</td>
-<td align="center">205</td>
+<td align="right">205</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-21</td>
 <td align="right">288</td>
-<td align="center">197</td>
+<td align="right">197</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-22</td>
 <td align="right">288</td>
-<td align="center">201</td>
+<td align="right">201</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-23</td>
 <td align="right">288</td>
-<td align="center">200</td>
+<td align="right">200</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-24</td>
 <td align="right">288</td>
-<td align="center">208</td>
+<td align="right">208</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-25</td>
 <td align="right">288</td>
-<td align="center">244</td>
+<td align="right">244</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-26</td>
 <td align="right">288</td>
-<td align="center">200</td>
+<td align="right">200</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-27</td>
 <td align="right">288</td>
-<td align="center">213</td>
+<td align="right">213</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-28</td>
 <td align="right">288</td>
-<td align="center">184</td>
+<td align="right">184</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-29</td>
 <td align="right">288</td>
-<td align="center">226</td>
+<td align="right">226</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-30</td>
 <td align="right">288</td>
-<td align="center">199</td>
+<td align="right">199</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-10-31</td>
 <td align="right">288</td>
-<td align="center">202</td>
+<td align="right">202</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-01</td>
 <td align="right">288</td>
-<td align="center">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-02</td>
 <td align="right">288</td>
-<td align="center">214</td>
+<td align="right">214</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-03</td>
 <td align="right">288</td>
-<td align="center">198</td>
+<td align="right">198</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-04</td>
 <td align="right">288</td>
-<td align="center">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-05</td>
 <td align="right">288</td>
-<td align="center">214</td>
+<td align="right">214</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-06</td>
 <td align="right">288</td>
-<td align="center">205</td>
+<td align="right">205</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-07</td>
 <td align="right">288</td>
-<td align="center">193</td>
+<td align="right">193</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-08</td>
 <td align="right">288</td>
-<td align="center">236</td>
+<td align="right">236</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-09</td>
 <td align="right">288</td>
-<td align="center">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-10</td>
 <td align="right">288</td>
-<td align="center">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-11</td>
 <td align="right">288</td>
-<td align="center">193</td>
+<td align="right">193</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-12</td>
 <td align="right">288</td>
-<td align="center">219</td>
+<td align="right">219</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-13</td>
 <td align="right">288</td>
-<td align="center">207</td>
+<td align="right">207</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-14</td>
 <td align="right">288</td>
-<td align="center">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-15</td>
 <td align="right">288</td>
-<td align="center">286</td>
+<td align="right">286</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-16</td>
 <td align="right">288</td>
-<td align="center">227</td>
+<td align="right">227</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-17</td>
 <td align="right">288</td>
-<td align="center">210</td>
+<td align="right">210</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-18</td>
 <td align="right">288</td>
-<td align="center">195</td>
+<td align="right">195</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-19</td>
 <td align="right">288</td>
-<td align="center">213</td>
+<td align="right">213</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-20</td>
 <td align="right">288</td>
-<td align="center">241</td>
+<td align="right">241</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-21</td>
 <td align="right">288</td>
-<td align="center">220</td>
+<td align="right">220</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-22</td>
 <td align="right">288</td>
-<td align="center">173</td>
+<td align="right">173</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-23</td>
 <td align="right">288</td>
-<td align="center">204</td>
+<td align="right">204</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-24</td>
 <td align="right">288</td>
-<td align="center">206</td>
+<td align="right">206</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-25</td>
 <td align="right">288</td>
-<td align="center">204</td>
+<td align="right">204</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-26</td>
 <td align="right">288</td>
-<td align="center">201</td>
+<td align="right">201</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-27</td>
 <td align="right">288</td>
-<td align="center">202</td>
+<td align="right">202</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-28</td>
 <td align="right">288</td>
-<td align="center">240</td>
+<td align="right">240</td>
 </tr>
 <tr class="even">
 <td align="left">2012-11-29</td>
 <td align="right">288</td>
-<td align="center">224</td>
+<td align="right">224</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-30</td>
 <td align="right">288</td>
-<td align="center">NA</td>
+<td align="right">NA</td>
 </tr>
 </tbody>
 </table>
@@ -946,7 +944,6 @@ str(bydate)</code></pre>
 <h4>Display mean and median</h4>
 <pre class="r"><code>knitr::kable(meanmedNAfill, caption = &quot;Mean and Median Number of Steps per Day - NA's filled&quot;)</code></pre>
 <table>
-<caption>Mean and Median Number of Steps per Day - NA’s filled</caption>
 <thead>
 <tr class="header">
 <th align="left">date</th>
@@ -1266,107 +1263,105 @@ str(bydate)</code></pre>
 This can be seen more clearly by comparing summaries of meanmed and meanmedNAfill</p>
 <pre class="r"><code>knitr::kable(summary(meanmed), caption = &quot;Summary of Means and Medians without NA's filled&quot;)</code></pre>
 <table>
-<caption>Summary of Means and Medians without NA’s filled</caption>
 <thead>
 <tr class="header">
-<th></th>
-<th align="center">date</th>
-<th align="center">mean.steps</th>
-<th align="center">median.steps</th>
+<th align="left"></th>
+<th align="left">date</th>
+<th align="left">mean.steps</th>
+<th align="left">median.steps</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td align="center">Min. :2012-10-01</td>
-<td align="center">Min. : 0.1424</td>
-<td align="center">Min. :0</td>
+<td align="left"></td>
+<td align="left">Min. :2012-10-01</td>
+<td align="left">Min. : 0.1424</td>
+<td align="left">Min. :0</td>
 </tr>
 <tr class="even">
-<td></td>
-<td align="center">1st Qu.:2012-10-16</td>
-<td align="center">1st Qu.:30.6979</td>
-<td align="center">1st Qu.:0</td>
+<td align="left"></td>
+<td align="left">1st Qu.:2012-10-16</td>
+<td align="left">1st Qu.:30.6979</td>
+<td align="left">1st Qu.:0</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td align="center">Median :2012-10-31</td>
-<td align="center">Median :37.3785</td>
-<td align="center">Median :0</td>
+<td align="left"></td>
+<td align="left">Median :2012-10-31</td>
+<td align="left">Median :37.3785</td>
+<td align="left">Median :0</td>
 </tr>
 <tr class="even">
-<td></td>
-<td align="center">Mean :2012-10-31</td>
-<td align="center">Mean :37.3826</td>
-<td align="center">Mean :0</td>
+<td align="left"></td>
+<td align="left">Mean :2012-10-31</td>
+<td align="left">Mean :37.3826</td>
+<td align="left">Mean :0</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td align="center">3rd Qu.:2012-11-15</td>
-<td align="center">3rd Qu.:46.1597</td>
-<td align="center">3rd Qu.:0</td>
+<td align="left"></td>
+<td align="left">3rd Qu.:2012-11-15</td>
+<td align="left">3rd Qu.:46.1597</td>
+<td align="left">3rd Qu.:0</td>
 </tr>
 <tr class="even">
-<td></td>
-<td align="center">Max. :2012-11-30</td>
-<td align="center">Max. :73.5903</td>
-<td align="center">Max. :0</td>
+<td align="left"></td>
+<td align="left">Max. :2012-11-30</td>
+<td align="left">Max. :73.5903</td>
+<td align="left">Max. :0</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td align="center">NA</td>
-<td align="center">NA’s :8</td>
-<td align="center">NA’s :8</td>
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA’s :8</td>
+<td align="left">NA’s :8</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>knitr::kable(summary(meanmedNAfill), caption = &quot;Summary of Means and Medians with NA's filled&quot;)</code></pre>
 <table>
-<caption>Summary of Means and Medians with NA’s filled</caption>
 <thead>
 <tr class="header">
-<th></th>
-<th align="center">date</th>
-<th align="center">mean.steps</th>
-<th align="center">median.steps</th>
+<th align="left"></th>
+<th align="left">date</th>
+<th align="left">mean.steps</th>
+<th align="left">median.steps</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td align="center">Min. :2012-10-01</td>
-<td align="center">Min. : 0.1424</td>
-<td align="center">Min. : 0.000</td>
+<td align="left"></td>
+<td align="left">Min. :2012-10-01</td>
+<td align="left">Min. : 0.1424</td>
+<td align="left">Min. : 0.000</td>
 </tr>
 <tr class="even">
-<td></td>
-<td align="center">1st Qu.:2012-10-16</td>
-<td align="center">1st Qu.:34.0938</td>
-<td align="center">1st Qu.: 0.000</td>
+<td align="left"></td>
+<td align="left">1st Qu.:2012-10-16</td>
+<td align="left">1st Qu.:34.0938</td>
+<td align="left">1st Qu.: 0.000</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td align="center">Median :2012-10-31</td>
-<td align="center">Median :37.3826</td>
-<td align="center">Median : 0.000</td>
+<td align="left"></td>
+<td align="left">Median :2012-10-31</td>
+<td align="left">Median :37.3826</td>
+<td align="left">Median : 0.000</td>
 </tr>
 <tr class="even">
-<td></td>
-<td align="center">Mean :2012-10-31</td>
-<td align="center">Mean :37.3826</td>
-<td align="center">Mean : 4.474</td>
+<td align="left"></td>
+<td align="left">Mean :2012-10-31</td>
+<td align="left">Mean :37.3826</td>
+<td align="left">Mean : 4.474</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td align="center">3rd Qu.:2012-11-15</td>
-<td align="center">3rd Qu.:44.4826</td>
-<td align="center">3rd Qu.: 0.000</td>
+<td align="left"></td>
+<td align="left">3rd Qu.:2012-11-15</td>
+<td align="left">3rd Qu.:44.4826</td>
+<td align="left">3rd Qu.: 0.000</td>
 </tr>
 <tr class="even">
-<td></td>
-<td align="center">Max. :2012-11-30</td>
-<td align="center">Max. :73.5903</td>
-<td align="center">Max. :34.113</td>
+<td align="left"></td>
+<td align="left">Max. :2012-11-30</td>
+<td align="left">Max. :73.5903</td>
+<td align="left">Max. :34.113</td>
 </tr>
 </tbody>
 </table>
