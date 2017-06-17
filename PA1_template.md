@@ -554,4 +554,4 @@ ggplot(data = bydatew) +
       facet_wrap(~daytype, nrow = 2)
 ```
 
-![](PA1_template_files/figure-html/Panel Plot-1.png)<!-- -->
+![](PA1_template_files/figure-html/Panel_Plot-1.png)<!-- -->

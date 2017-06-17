@@ -198,7 +198,7 @@ bydatew <- group_by(actwday, interval, daytype) %>% summarize(average = mean(ste
 ```
 
 #### Use ggplot with factor_grid to create Panel Plot
-```{r Panel Plot}
+```{r Panel_Plot}
 ggplot(data = bydatew) + 
       geom_line(aes(x = interval, y = average)) +
       labs(title = "Average steps by 5 minute interval") + 
